@@ -71,5 +71,7 @@ src/catgen/out
 ## Misc
 tools/.gitignore
 
-##dataSets
+##commgraph
 data
+twitter.jar
+tpcc.jar
