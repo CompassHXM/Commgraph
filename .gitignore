@@ -71,3 +71,6 @@ src/catgen/out
 
 ## Misc
 tools/.gitignore
+
+##dataSets
+data
