@@ -11,7 +11,7 @@ def _updater(str,key,newvalue):
     for i in range(n):
         piece = lines[i].split("=")
         if len(piece) == 2 and piece[0].split()[0] == key:
-            lines[i] = piece[0] + " = " + newvalue
+            lines[i] = piece[0] + "=" + newvalue
             break
     return "\n".join(lines)
 
