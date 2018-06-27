@@ -75,3 +75,4 @@ tools/.gitignore
 data
 twitter.jar
 tpcc.jar
+.exe
