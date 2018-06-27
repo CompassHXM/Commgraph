@@ -3,123 +3,174 @@ from fabric.api import *
 from fabric.operations import *
 from fabric.contrib.console import confirm
 import json
-import sys
+import os.path
 
-"""             Settings are Here                     """
+"""			 Settings are Here					 """
 required_settings = \
-    {"hstore_home":str,"project_name":str,"hostfile":str,\
-    "env.user":str,"env.key_filename":str,"env.parallel":bool,\
-    "clients":list,"servers":list,"bench_tag":str,"result_dir":str\
-    "command_hello":str,"command_prepare":str,"command_load":str,"command_run":str}
-
+	{"hstore_home":str,"project_name":str,"hostfile":str,\
+	"env.user":str,"env.key_filename":str,"env.parallel":bool,\
+	"clients":list,"servers":list,"bench_tag":str,"result_dir":str,\
+	"partitions_per_site":int,"partition_num":int,\
+	"command_hello":str,"command_prepare":str,"command_load":str,"command_run":str}
 
 def clients():
-    """Prefix, Required: select clients to run commands"""
-    cfg_dict = _load_configuration()
-    env.user = cfg_dict['env.user']
-    env.key_filename = cfg_dict['env.key_filename']
-    env.parallel = cfg_dict['env.parallel']
-    env.hosts = cfg_dict['clients']
+	"""Prefix, Required: select clients to run commands"""
+	cfg_dict = _load_configuration()
+	env.user = cfg_dict['env.user']
+	env.key_filename = cfg_dict['env.key_filename']
+	env.parallel = cfg_dict['env.parallel']
+	env.hosts = cfg_dict['clients']
 
 def all():
-    """Prefix, Required: select all hosts to run commands"""
-    cfg_dict = _load_configuration()
-    env.user = cfg_dict['env.user']
-    env.key_filename = cfg_dict['env.key_filename']
-    env.parallel = cfg_dict['env.parallel']
-    env.hosts = cfg_dict['all_hosts']
+	"""Prefix, Required: select all hosts to run commands"""
+	cfg_dict = _load_configuration()
+	env.user = cfg_dict['env.user']
+	env.key_filename = cfg_dict['env.key_filename']
+	env.parallel = cfg_dict['env.parallel']
+	env.hosts = cfg_dict['all_hosts']
 
 def remote():
-    """Prefix, Required: select remote hosts to run commands"""
-    cfg_dict = _load_configuration()
-    env.user = cfg_dict['env.user']
-    env.key_filename = cfg_dict['env.key_filename']
-    env.parallel = cfg_dict['env.parallel']
-    env.hosts = cfg_dict['remote_hosts']
+	"""Prefix, Required: select remote hosts to run commands"""
+	cfg_dict = _load_configuration()
+	env.user = cfg_dict['env.user']
+	env.key_filename = cfg_dict['env.key_filename']
+	env.parallel = cfg_dict['env.parallel']
+	env.hosts = cfg_dict['remote_hosts']
+
+def once():
+	"""Prefix, Required: select only localhost to run commands"""
+	cfg_dict = _load_configuration()
+	env.user = cfg_dict['env.user']
+	env.key_filename = cfg_dict['env.key_filename']
+	env.parallel = cfg_dict['env.parallel']
+	env.hosts = cfg_dict['localhost']
 
 def hello():
-    """Run command hello in selected cluster"""
-    cfg_dict = _load_configuration()
-    run(cfg_dict["command_hello"])
+	"""Run command hello in selected cluster"""
+	cfg_dict = _load_configuration()
+	run(cfg_dict["command_hello"])
 
 def _encodes(item):
-    if type(item) == unicode:
-        return item.encode('utf-8')
-    elif type(item) == list:
-        nitem = []
-        for i in item:
-            nitem.append(_encodes(i))
-        return nitem
-    elif type(item) == dict:
-        nitem = {}
-        for k,v in item.items():
-            nitem[_encodes(k)] = _encodes(v)
-        return nitem
-    else:
-        return item
+	if type(item) == unicode:
+		return item.encode('utf-8')
+	elif type(item) == list:
+		nitem = []
+		for i in item:
+			nitem.append(_encodes(i))
+		return nitem
+	elif type(item) == dict:
+		nitem = {}
+		for k,v in item.items():
+			nitem[_encodes(k)] = _encodes(v)
+		return nitem
+	else:
+		return item
 
 def _load_configuration():
-    with open("fab.cfg","r") as cfg_file:
-        cfg_str = cfg_file.read()
-        cfg_dict = _encodes(json.loads(cfg_str))
-        for required_ss,the_type in required_settings.items():
-            if required_ss not in cfg_dict:
-                error(required_ss + " is required in configuration file 'fab.cfg'.")
-            if type(cfg_dict[required_ss]) != the_type:
-                error("%s should be %s instead of %s in configuration file 'fab.cfg'."\
-                    % (required_ss, the_type, type(cfg_dict[required_ss])))
+	if hasattr(env,"cfg_dict"):
+		return env.cfg_dict
 
-    cfg_dict["project_propt"] = cfg_dict["hstore_home"]\
-                        + "/properties/benchmarks/%s.properties" % cfg_dict["project_name"]
-    
-    cfg_dict["remote_hosts"] = list(set(cfg_dict["clients"] + cfg_dict["servers"]))
-    cfg_dict["all_hosts"] = cfg_dict["remote_hosts"] + ["localhost"]
-    cfg_dict["command_run"] += "-Dclient.count=%d -Dclient.hosts=\"%s\" | tee %s.log"\
-                        % ( len(cfg_dict["clients"]), \
-                            str(cfg_dict["clients"])[1:-1].replace("'",'').replace(', ',';'), \
-                            cfg_dict["bench_tag"] )
-    return cfg_dict
+	with open("fab.cfg","r") as cfg_file:
+		cfg_str = cfg_file.read()
+		cfg_dict = _encodes(json.loads(cfg_str))
+		for required_ss,the_type in required_settings.items():
+			if required_ss not in cfg_dict:
+				error(required_ss + " is required in configuration file 'fab.cfg'.")
+			if type(cfg_dict[required_ss]) != the_type:
+				error("%s should be %s instead of %s in configuration file 'fab.cfg'."\
+					% (required_ss, the_type, type(cfg_dict[required_ss])))
+
+	cfg_dict["project_propt"] = cfg_dict["hstore_home"]\
+						+ "/properties/benchmarks/%s.properties" % cfg_dict["project_name"]
+
+	lh = local("echo $(ifconfig | grep \"inet addr\" | head -n 1 | cut -d':' -f 2 | cut -d' ' -f1)", capture=True)
+
+	cfg_dict["localhost"] = [lh]
+	cfg_dict["remote_hosts"] = list(set(cfg_dict["clients"] + cfg_dict["servers"]))
+	cfg_dict["all_hosts"] = cfg_dict["remote_hosts"] + [lh]
+	
+	# no local host as clients 
+	cfg_dict["command_run"] += " -Dclient.count=%d -Dclient.hosts=\"%s\" | tee %s.log"\
+						% ( len(cfg_dict["clients"]), \
+							str(cfg_dict["clients"])[1:-1].replace("'",'').replace(', ',';'), \
+							cfg_dict["bench_tag"] )
+	env.cfg_dict = cfg_dict
+	return cfg_dict
 
 def build():
 	cfg_dict = _load_configuration()
 	with cd(cfg_dict["hstore_home"]):
 		run("ant build")
 
-def restart():
+def _gen_cluster_cfg():
 	cfg_dict = _load_configuration()
-	run("killall java")
+	# we say that localhost as a server
+	cluster_cfg_file = cfg_dict["hstore_home"] + "/" + cfg_dict["hostfile"]
+	pps = cfg_dict["partitions_per_site"]
+	if pps == 1:
+		with open(cluster_cfg_file,"w") as ccf:
+			sitei = 1
+			print >> ccf, cfg_dict["localhost"][0] + ":0:0"
+			for server in cfg_dict["servers"]:
+				print >> ccf, "%s:%d:%d" % (server, sitei, sitei)
+				sitei = sitei + 1
+	elif pps > 0:
+		with open(cluster_cfg_file,"w") as ccf:
+			sitei = 1
+			endpid = pps-1
+			print >> ccf, cfg_dict["localhost"][0] + ":0:0-%d" % (pps-1)
+			for server in cfg_dict["servers"]:
+				stpid = sitei*pps
+				if stpid >= cfg_dict["partition_num"]:
+					print "\n[Warning]: some servers are not assgined to work\n"
+					break
+
+				endpid = (sitei+1)*pps-1
+				if endpid >= cfg_dict["partition_num"]:
+					endpid = cfg_dict["partition_num"] - 1
+				print >> ccf, "%s:%d:%d-%d" % (server, sitei, sitei*pps, endpid)
+				sitei = sitei + 1
+
+def updateBenchCfg():
+	cfg_dict = _load_configuration()
+	if len(env.hosts) > 1:
+		error('could only run at prefix "once"')
+
+	_gen_cluster_cfg()
+	if "update_files" in cfg_dict:
+		for f in cfg_dict["update_files"]:
+			execute(updateFile, hosts=cfg_dict["remote_hosts"], newfile=f)
+
+def prepare():
+	cfg_dict = _load_configuration()
+	with settings(warn_only=True), cd(cfg_dict["hstore_home"]):
+		run("killall java")
+
 	with cd(cfg_dict["hstore_home"]):
 		run(cfg_dict["command_prepare"])
-	local(cfg_dict["command_load"])
 
-def run():
+def foo():
+	local("echo $(ifconfig | grep \"inet addr\" | head -n 1 | cut -d':' -f 2 | cut -d' ' -f1)")
+
+def load():
 	cfg_dict = _load_configuration()
-	local(cfg_dict["command_run"])
-	lcd(cfg_dict["hstore_home"])
-	local("mkdir -p %s" % cfg_dict["result_dir"])
-	local("mv %s.log %s" % (cfg_dict["bench_tag"],cfg_dict["result_dir"]) )
+	with lcd(cfg_dict["hstore_home"]):
+		local(cfg_dict["command_load"])
 
-def updateFile(file=''):
-	if file[-1] == "/":
-    	file = file[:-1]
+def benchmark():
+	cfg_dict = _load_configuration()
+	with lcd(cfg_dict["hstore_home"]):
+		local(cfg_dict["command_run"])
+		local("mkdir -p %s" % cfg_dict["result_dir"])
+		local("mv %s.log %s" % (cfg_dict["bench_tag"],cfg_dict["result_dir"]) )
 
-    if len(file) == 0:
-        error("Error: please spcify path to file name(updateFile:file='file string').")
-    
-    if file[0] == '/' or file[0] == '~':
-    	# absolute path
-    	directory = file.rsplit('/', 1)[0]
-    	file = file.rsplit('/', 1)[1]
-    else:
-    	# relative path
-    	directory = sys.path[0] + file.rsplit('/', 1)[0]
-    	file = file.rsplit('/', 1)[1]
+def updateFile(newfile=''):
+	if len(newfile) == 0:
+		error("Error: please spcify path to file to update(updateFile:newfile='newfile string').")
+	newfile = os.path.realpath(newfile)
+	directory = os.path.dirname(newfile)
 
-    print("Updating file %s..." % file) 
-    with settings(warn_only=True):
-        if run("test -d %s" % directory).failed:
-            print("Target host don't have the directory. Create it frist...")
-            run("mkdir -p %s" % directory)
+	local('echo Updating new file "%s"...' % newfile)
+	run("mkdir -p %s/" % directory)
 
-    path = directory + "/" + file
-    put(path,path)
+	put(newfile,newfile)
