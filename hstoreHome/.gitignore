@@ -30,6 +30,7 @@ obj
 conf-*.html
 .DS_Store
 SourceJars
+monitoring-localhost.tar.gz
 
 ## -------------------------------
 ## JNI Compiler Artifacts
