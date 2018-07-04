@@ -3,7 +3,8 @@
 ant hstore-prepare -Dproject=twitter -Dhosts=cluster.cfg
 
 == Gen plan.json && data.txt && data.txt.new
-dataManufacture/autogen.sh
+#dataManufacture/autogen.sh
+mv plan.json to hstore_home
 #make & cp ./dataManufacture/metis-5.1.0/.../gpmetis into ./
 
 == Load
@@ -16,16 +17,12 @@ ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.h
 
 == Run Monitor && Gen transactions-partition-*.log
 
-ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.interval=1000 -Dclient.txnrate=10000 -Dclient.threads_per_host=10 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Delastic.run_monitoring=true -Delastic.update_plan=false -Delastic.exec_reconf=false -Delastic.delay=20000 -Dclient.count=1 -Dclient.hosts="localhost"
-
-== Run commgraph
-swap data.txt and data.txt.new
-Load & run baseline again
+ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.interval=1000 -Dclient.txnrate=10000 -Dclient.threads_per_host=8 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Delastic.run_monitoring=true -Delastic.update_plan=false -Delastic.exec_reconf=false -Delastic.delay=20000 -Dclient.count=1 -Dclient.hosts="localhost"
 
 ## Monitor file, transactions-partition-*.log needed
 == Gen E-store Greedy-ext: Plan_out.json
 
-ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.max_load=4050 -Delastic.algo=greedy-ext -Delastic.max_partitions_added=6 -Delastic.topk=8000 -Dclient.memory=4096
+ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.max_load=26050 -Delastic.algo=greedy-ext -Delastic.max_partitions_added=6 -Delastic.topk=8000 -Dclient.memory=4096
 
 == Run E-store Greedy-ext:
 swap plan.json and plan_out.json
@@ -33,8 +30,16 @@ Load & Run baseline again
 
 == Gen Metis with imbalance_load: Plan_out.json
 
-ant affinity -Dproject=affinity -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.imbalance_load=1.5 -Delastic.algo=metis -Delastic.max_partitions_added=6 -Dclient.memory=4096
+ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.imbalance_load=1.5 -Delastic.algo=metis -Delastic.max_partitions_added=6 -Dclient.memory=4096
 
 == Run Metis:
 swap plan.json and plan_out.json
 Load & Run baseline again
+
+
+== Run commgraph
+swap data.txt and data.txt.new or change properties file
+Prepare
+Load & run baseline again
+
+### remember that $max_user_id in properties file need strictly less than max_id in json file!!!!
