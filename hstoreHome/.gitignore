@@ -31,6 +31,8 @@ conf-*.html
 .DS_Store
 SourceJars
 monitoring-localhost.tar.gz
+metis*
+graph-cplex.txt
 
 ## -------------------------------
 ## JNI Compiler Artifacts
