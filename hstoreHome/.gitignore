@@ -33,6 +33,7 @@ SourceJars
 monitoring-localhost.tar.gz
 metis*
 graph-cplex.txt
+transactions-partition-*.log
 
 ## -------------------------------
 ## JNI Compiler Artifacts
