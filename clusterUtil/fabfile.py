@@ -98,11 +98,13 @@ def _load_configuration():
 	return cfg_dict
 
 def build():
+	"""build h-store project"""
 	cfg_dict = _load_configuration()
 	with cd(cfg_dict["hstore_home"]):
 		run("ant build")
 
 def _gen_cluster_cfg():
+	"""generate "cluster.cfg" """
 	cfg_dict = _load_configuration()
 	# we say that localhost as a server
 	cluster_cfg_file = cfg_dict["hstore_home"] + "/" + cfg_dict["hostfile"]
@@ -132,6 +134,7 @@ def _gen_cluster_cfg():
 				sitei = sitei + 1
 
 def updateBenchCfg():
+	"""update plan.json, cluster.cfg, twitter.properties """
 	cfg_dict = _load_configuration()
 	if len(env.hosts) > 1:
 		error('could only run at prefix "once"')
@@ -142,6 +145,7 @@ def updateBenchCfg():
 			execute(updateFile, hosts=cfg_dict["remote_hosts"], newfile=f)
 
 def prepare():
+	"""reset env and run prepare on machines"""
 	cfg_dict = _load_configuration()
 	with settings(warn_only=True), cd(cfg_dict["hstore_home"]):
 		run("killall java")
@@ -150,14 +154,17 @@ def prepare():
 		run(cfg_dict["command_prepare"])
 
 def foo():
+	"""list the ip"""
 	local("echo $(ifconfig | grep \"inet addr\" | head -n 1 | cut -d':' -f 2 | cut -d' ' -f1)")
 
 def load():
+	"""run command load on local machine"""
 	cfg_dict = _load_configuration()
 	with lcd(cfg_dict["hstore_home"]):
 		local(cfg_dict["command_load"])
 
 def benchmark():
+	"""run benchmark on local machine"""
 	cfg_dict = _load_configuration()
 	with lcd(cfg_dict["hstore_home"]):
 		local(cfg_dict["command_run"])
@@ -165,6 +172,7 @@ def benchmark():
 		local("mv %s.log %s" % (cfg_dict["bench_tag"],cfg_dict["result_dir"]) )
 
 def updateFile(newfile=''):
+	"""update a specific file"""
 	if len(newfile) == 0:
 		error("Error: please spcify path to file to update(updateFile:newfile='newfile string').")
 	newfile = os.path.realpath(newfile)
