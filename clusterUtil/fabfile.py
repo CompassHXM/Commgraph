@@ -11,7 +11,7 @@ required_settings = \
 	"env.user":str,"env.key_filename":str,"env.parallel":bool,\
 	"clients":list,"servers":list,"bench_tag":str,"result_dir":str,\
 	"partitions_per_site":int,"partition_num":int,\
-	"command_hello":str,"command_prepare":str,"command_load":str,"command_run":str}
+	"command_hello":str,"command_prepare":str,"command_load":str,"command_run":str,"command_monitor":str}
 
 def clients():
 	"""Prefix, Required: select clients to run commands"""
@@ -90,10 +90,13 @@ def _load_configuration():
 	cfg_dict["all_hosts"] = cfg_dict["remote_hosts"] + [lh]
 	
 	# no local host as clients 
-	cfg_dict["command_run"] += " -Dclient.count=%d -Dclient.hosts=\"%s\" | tee %s.log"\
-						% ( len(cfg_dict["clients"]), \
-							str(cfg_dict["clients"])[1:-1].replace("'",'').replace(', ',';'), \
-							cfg_dict["bench_tag"] )
+	client_suffix = " -Dclient.count=%d -Dclient.hosts=\"%s\" " \
+					% ( len(cfg_dict["clients"]), \
+					str(cfg_dict["clients"])[1:-1].replace("'",'').replace(', ',';') )
+
+	cfg_dict["command_run"] += client_suffix + " | tee %s.log" % cfg_dict["bench_tag"]
+	cfg_dict["command_monitor"] += client_suffix
+
 	env.cfg_dict = cfg_dict
 	return cfg_dict
 

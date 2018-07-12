@@ -1,24 +1,27 @@
+write fab.cfg, server_information
+fab all hello
+fab all build
 == Prepare
-
-ant hstore-prepare -Dproject=twitter -Dhosts=cluster.cfg
-
-== Gen plan.json && data.txt && data.txt.new
-#dataManufacture/autogen.sh
-cp ./data/amazon.0302.txt ./data/test.txt
+write properties/benchmark/twitter.properties
+cp data/amazon/amazon0302.plan.json ./
+fab once updateBenchCfg
+fab all prepare
 
 #make & cp ./dataManufacture/metis-5.1.0/.../gpmetis into ./
 
 == Load
-
+fab once load
+#
 ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnoshutdown=true -Dnoexecute=true -Dsite.txn_restart_limit_sysproc=100 -Dsite.jvm_asserts=false -Dsite.commandlog_enable=false -Dsite.exec_db2_redirects=false -Dsite.exec_early_prepare=false -Dsite.exec_force_singlepartitioned=true -Dsite.markov_fixed=false -Dsite.planner_caching=false -Dsite.specexec_enable=true -Dglobal.memory=1024 -Dclient.memory=8000 -Dsite.memory=8000
 
 == Run Baseline 
-
+fab once benchmark
+#
 ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.duration=60000 -Dclient.interval=1000 -Dclient.txnrate=6000  -Dclient.threads_per_host=5 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Dclient.output_basepartitions=true -Dglobal.memory=1024 -Dclient.memory=8000 -Dsite.memory=8000 -Dclient.count=1 -Dclient.hosts="localhost"
 
 == Run Monitor && Gen transactions-partition-*.log
-
-ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.interval=1000 -Dclient.txnrate=6000 -Dclient.threads_per_host=8 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Delastic.run_monitoring=true -Delastic.update_plan=false -Delastic.exec_reconf=false -Delastic.delay=20000 -Dclient.count=1 -Dclient.hosts="localhost"
+fab once monitor
+ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.interval=1000 -Dclient.txnrate=10000 -Dclient.threads_per_host=8 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Delastic.run_monitoring=true -Delastic.update_plan=false -Delastic.exec_reconf=false -Delastic.delay=20000 -Dclient.count=1 -Dclient.hosts="localhost"
 
 ## Monitor file, transactions-partition-*.log needed
 == Gen E-store Greedy-ext: Plan_out.json
@@ -39,7 +42,7 @@ Load & Run baseline again
 
 
 == Run commgraph
-cp ./data/amazon.0302.txt.new ./data/test.txt
+write properties/twitter.properties ./data/amazon.0302.txt.new 
 Prepare
 Load & run baseline again
 
