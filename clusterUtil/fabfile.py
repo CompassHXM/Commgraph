@@ -174,6 +174,12 @@ def benchmark():
 		local("mkdir -p %s" % cfg_dict["result_dir"])
 		local("mv %s.log %s" % (cfg_dict["bench_tag"],cfg_dict["result_dir"]) )
 
+def monitor():
+	"""run monitor on local machine"""
+	cfg_dict = _load_configuration()
+	with lcd(cfg_dict["hstore_home"]):
+		local(cfg_dict["command_monitor"])
+		
 def updateFile(newfile=''):
 	"""update a specific file"""
 	if len(newfile) == 0:
