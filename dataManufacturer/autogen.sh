@@ -1,9 +1,11 @@
 #!/bin/bash
 set -e #x to display commands, e to exit when error
 inputfile="$1"
+n=120000
 pattern=${inputfile%.txt}
+patternF=${pattern}_${n}
 Louvain_src="./Louvain_ver_0.3"
-limit=4
+limit=20000
 
 if [ ! -f ${inputfile} ]; then
 	echo file ${inputfile} is not exist.
@@ -15,16 +17,20 @@ cd ${Louvain_src} && make && cd -
 g++ placement.cpp -std=c++11 -O2 -o placement
 
 echo detected pattern as "$pattern"
+echo set pattern after filter as "$patternF"
 set -x
-if [ ! -f ${pattern}.bin ]; then
-	./${Louvain_src}/convert -i ${inputfile} -o ${pattern}.bin
+if [ ! -f ${patternF}.txt ]; then
+	./filter.py ${inputfile} -f $n -o ${patternF}.txt
 fi
-./${Louvain_src}/louvain ${pattern}.bin -l -1 > ${pattern}.tree
-./placement ${pattern}.tree -l ${limit} -m ${limit} -p ${pattern}.plan.json > ${pattern}.renum
-./graph_renumber.py $1 -r ${pattern}.renum -o ${pattern}.txt.new
+if [ ! -f ${patternF}.bin ]; then
+	./${Louvain_src}/convert -i ${patternF}.txt -o ${patternF}.bin
+fi
+./${Louvain_src}/louvain ${patternF}.bin -l -1 > ${patternF}.tree
+./placement ${patternF}.tree -l ${limit} -m ${limit} -p ${patternF}.plan.json > ${patternF}.renum
+./graph_renumber.py ${patternF}.txt -r ${patternF}.renum -o ${patternF}.txt.new
 
 # comment below to debug
-rm ${pattern}.tree ${pattern}.renum
+rm ${patternF}.tree ${patternF}.renum
 
 echo All successful.
 
