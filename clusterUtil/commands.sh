@@ -21,7 +21,7 @@ ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.h
 
 == Run Monitor && Gen transactions-partition-*.log
 fab once monitor
-ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.interval=1000 -Dclient.txnrate=10000 -Dclient.threads_per_host=8 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Delastic.run_monitoring=true -Delastic.update_plan=false -Delastic.exec_reconf=false -Delastic.delay=20000 -Dclient.count=1 -Dclient.hosts="localhost"
+ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Dnostart=true -Dnoloader=true -Dnoshutdown=true -Dclient.interval=1000 -Dclient.txnrate=10000 -Dclient.threads_per_host=8 -Dclient.blocking_concurrent=30 -Dclient.output_results_csv=results.csv -Dclient.output_interval=true -Dsite.planner_caching=false -Dclient.txn_hints=false -Dsite.exec_early_prepare=false -Delastic.run_monitoring=true -Delastic.update_plan=false -Dglobal.memory=1024 -Dclient.memory=8000 -Dsite.memory=8000 -Delastic.exec_reconf=false -Delastic.delay=20000 -Dclient.count=1 -Dclient.hosts="localhost"
 
 ## Monitor file, transactions-partition-*.log needed
 == Gen E-store Greedy-ext: Plan_out.json
