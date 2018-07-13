@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e #x to display commands, e to exit when error
 inputfile="$1"
-n=120000
+n=110000
 pattern=${inputfile%.txt}
 patternF=${pattern}_${n}
 Louvain_src="./Louvain_ver_0.3"
