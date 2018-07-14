@@ -40,10 +40,10 @@ public abstract class TwitterConstants {
     public static int LIMIT_FOLLOWING = 10; 
     
     public static final int FREQ_GET_TWEET = 0; // HACK - was 1
-    public static final int FREQ_GET_TWEETS_FROM_FOLLOWING = 1;
-    public static final int FREQ_GET_FOLLOWERS = 3;
-    public static final int FREQ_GET_USER_TWEETS = 90; // HACK - was 89
-    public static final int FREQ_INSERT_TWEET = 6;
+    public static final int FREQ_GET_TWEETS_FROM_FOLLOWING = 50;
+    public static final int FREQ_GET_FOLLOWERS = 5;
+    public static final int FREQ_GET_USER_TWEETS = 40; // HACK - was 89
+    public static final int FREQ_INSERT_TWEET = 5;
     public static final String USE_GRAPH_TXN_GEN = "USE_GRAPH_TXN_GEN";
     public static final boolean USE_GRAPH_TXN_GEN_DEFAULT = false;
 
