@@ -433,11 +433,12 @@ public class AffinityGraph {
                 int vert_hash = vert_ids[incrID];
                 double vert_weight = m_vertices.get(vert_hash);
                 //StringBuilder sb = new StringBuilder(String.format("%s %d", m_vertex_to_name.get(vert_hash), (int)(vert_weight*100)));//TODO casting to int
-                StringBuilder sb = new StringBuilder(String.format("%d", (int)(vert_weight*100)));//TODO casting to int
+                StringBuilder sb = new StringBuilder(String.format("%d", (int)(vert_weight*1000)));//TODO casting to int
                 
                 for (Entry<Integer, Double> edge: m_edges.get(vert_hash).entrySet()){
-                    int weight = (int) (edge.getValue() * 100);
-                    sb.append(String.format(" %d %d", vert_to_increment.get(edge.getKey()),weight ));//TODO casting to int
+                    int weight = (int) (edge.getValue() * 1000);
+                    if (weight > 0)
+                        sb.append(String.format(" %d %d", vert_to_increment.get(edge.getKey()),weight ));//TODO casting to int
                 }
                 writer.write(sb.toString());
                 writer.newLine();
@@ -1049,3 +1050,4 @@ public class AffinityGraph {
 
 
 }
+

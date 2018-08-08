@@ -114,16 +114,18 @@ def _gen_cluster_cfg():
 	pps = cfg_dict["partitions_per_site"]
 	if pps == 1:
 		with open(cluster_cfg_file,"w") as ccf:
-			sitei = 1
-			print >> ccf, cfg_dict["localhost"][0] + ":0:0"
+			sitei = 0
+			#print >> ccf, cfg_dict["localhost"][0] + ":0:0"
 			for server in cfg_dict["servers"]:
+				if sitei >= cfg["partition_num"]:
+					break
 				print >> ccf, "%s:%d:%d" % (server, sitei, sitei)
 				sitei = sitei + 1
 	elif pps > 0:
 		with open(cluster_cfg_file,"w") as ccf:
-			sitei = 1
-			endpid = pps-1
-			print >> ccf, cfg_dict["localhost"][0] + ":0:0-%d" % (pps-1)
+			sitei = 0
+			#endpid = pps-1
+			#print >> ccf, cfg_dict["localhost"][0] + ":0:0-%d" % (pps-1)
 			for server in cfg_dict["servers"]:
 				stpid = sitei*pps
 				if stpid >= cfg_dict["partition_num"]:
@@ -152,6 +154,9 @@ def prepare():
 	cfg_dict = _load_configuration()
 	with settings(warn_only=True), cd(cfg_dict["hstore_home"]):
 		run("killall java")
+		run("rm transactions-partition-*.log")
+		run("rm monitoring-*.tar.gz")
+		run("rm interval-partition-*.log")
 
 	with cd(cfg_dict["hstore_home"]):
 		run(cfg_dict["command_prepare"])
@@ -179,7 +184,7 @@ def monitor():
 	cfg_dict = _load_configuration()
 	with lcd(cfg_dict["hstore_home"]):
 		local(cfg_dict["command_monitor"])
-		
+
 def updateFile(newfile=''):
 	"""update a specific file"""
 	if len(newfile) == 0:
@@ -191,3 +196,4 @@ def updateFile(newfile=''):
 	run("mkdir -p %s/" % directory)
 
 	put(newfile,newfile)
+
