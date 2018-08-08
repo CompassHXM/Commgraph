@@ -117,7 +117,7 @@ def _gen_cluster_cfg():
 			sitei = 0
 			#print >> ccf, cfg_dict["localhost"][0] + ":0:0"
 			for server in cfg_dict["servers"]:
-				if sitei >= cfg["partition_num"]:
+				if sitei >= cfg_dict["partition_num"]:
 					break
 				print >> ccf, "%s:%d:%d" % (server, sitei, sitei)
 				sitei = sitei + 1
