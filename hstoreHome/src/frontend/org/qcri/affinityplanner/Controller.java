@@ -49,7 +49,7 @@ public class Controller extends Thread {
     public static int MAX_PARTITIONS;
     public static int PARTITIONS_PER_SITE;
 
-    public static int MONITORING_TIME = 20000;
+    public static int MONITORING_TIME = 140000;
     public static boolean EXEC_MONITORING = true;
     public static boolean EXEC_UPDATE_PLAN = true;
     public static boolean EXEC_RECONF = true;
@@ -409,3 +409,4 @@ public class Controller extends Thread {
         return sw.toString();
     }
 }
+
