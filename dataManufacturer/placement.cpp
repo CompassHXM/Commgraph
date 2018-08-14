@@ -194,6 +194,7 @@ int main(int argc, char **argv) {
 	int sum10 = 0,sum100 = 0,sum1000 = 0,sum10000 = 0,sum100000 = 0;
 	int count32 = 0,count320 = 0,count3200 = 0,count32000 = 0,count100000p = 0;
 	int sum32 = 0,sum320 = 0,sum3200 = 0,sum32000 = 0,sum100000p = 0;
+	int countall = 0;
 	for (auto &x : size_collector)
 	{
 		if (x <= 10)
@@ -237,12 +238,14 @@ int main(int argc, char **argv) {
 			count100000p ++;
 			sum100000p += x;
 		}
+		countall += x;
 	}
 
 	cerr << "result outputing" << endl;
 
 	fstream_comm_stat
 		<<  "size\tcount\tsum" << endl 
+		<<  "avg:" << countall / size_collector.size() << "," << size_collector.size() << endl
 		<<  "1~10:" << count10 << ","<< sum10 << endl
 		<<  "~32:" << count32 << ","<< sum32 << endl
 		<<  "~100:" << count100 << ","<< sum100 << endl
