@@ -191,3 +191,8 @@ def updateFile(newfile=''):
 	run("mkdir -p %s/" % directory)
 
 	put(newfile,newfile)
+
+def runCmd(command):
+	cfg_dict = _load_configuration()
+	with cd(cfg_dict["hstore_home"]):
+		run(command)

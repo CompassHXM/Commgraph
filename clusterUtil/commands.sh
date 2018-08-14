@@ -3,7 +3,7 @@ fab all hello
 fab all build
 == Prepare
 write properties/benchmark/twitter.properties
-cp data/amazon/amazon0302.plan.json ./
+cp data/amazon/amazon0302_180000.plan.json ./plan.json
 fab once updateBenchCfg
 fab all prepare
 
@@ -26,10 +26,12 @@ ant hstore-benchmark -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.h
 ## Monitor file, transactions-partition-*.log needed
 == Gen E-store Greedy-ext: Plan_out.json
 
-ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.max_load=26050 -Delastic.algo=greedy-ext -Delastic.max_partitions_added=6 -Delastic.topk=8000 -Dclient.memory=4096
+ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.max_load=19000 -Delastic.algo=greedy-ext -Delastic.max_partitions_added=6 -Delastic.topk=1000 -Dclient.memory=4096
 
 == Run E-store Greedy-ext:
 swap plan.json and plan_out.json
+fab once updateBenchCfg
+fab once prepare
 Load & Run baseline again
 
 == Gen Metis with imbalance_load: Plan_out.json
@@ -45,5 +47,8 @@ Load & Run baseline again
 write properties/twitter.properties ./data/amazon.0302.txt.new 
 Prepare
 Load & run baseline again
+
+== others:
+fab all runCmd:command="ant clean"
 
 ### remember that $max_user_id in properties file need strictly less than max_id in json file!!!!

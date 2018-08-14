@@ -149,7 +149,7 @@ int main(int argc, char **argv) {
 
 	//check whether containable in one partition
 	cerr << "extra check" << endl;
-
+	
 	const Partition Limit(MemLimit, LoadLimit);
 	for (int i = 0; i < hierarchy_comm_properties[hierarchy].size(); ++i) {
 		if ( !(hierarchy_comm_properties[hierarchy][i] <= Limit) ) {
@@ -158,6 +158,7 @@ int main(int argc, char **argv) {
 		}
 	}
 
+	ofstream fstream_comm_stat("commsize.txt", ofstream::out);
 	//frist fit
 	cerr << "frist fit" << endl;
 	vector<int> partition_plan(node_num + 1, -1);
@@ -181,6 +182,7 @@ int main(int argc, char **argv) {
 								+ active_partitions[fit];
 
 		community_in_parti[k] = fit;
+		fstream_comm_stat << hierarchy_comm_properties[hierarchy][k].size << endl;
 	}
 	for (int i = 0; i < hierarchy_comm[hierarchy].comm_map.size(); ++i)
 		dfs_set_plan(hierarchy, i, hierarchy_comm, community_in_parti[i], partition_plan);
