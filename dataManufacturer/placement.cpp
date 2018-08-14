@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	ofstream fstream_comm_stat("commsize.txt", ofstream::out);
+	vector<int> size_collector;
 	//frist fit
 	cerr << "frist fit" << endl;
 	vector<int> partition_plan(node_num + 1, -1);
@@ -182,13 +182,84 @@ int main(int argc, char **argv) {
 								+ active_partitions[fit];
 
 		community_in_parti[k] = fit;
-		fstream_comm_stat << hierarchy_comm_properties[hierarchy][k].size << endl;
+		size_collector.push_back(hierarchy_comm_properties[hierarchy][k].size);
 	}
 	for (int i = 0; i < hierarchy_comm[hierarchy].comm_map.size(); ++i)
 		dfs_set_plan(hierarchy, i, hierarchy_comm, community_in_parti[i], partition_plan);
 	
+	sort(size_collector.begin(), size_collector.end());
+
+	ofstream fstream_comm_stat("commsize.txt", ofstream::out);
+	int count10 = 0,count100 = 0,count1000 = 0,count10000 = 0,count100000 = 0;
+	int sum10 = 0,sum100 = 0,sum1000 = 0,sum10000 = 0,sum100000 = 0;
+	int count32 = 0,count320 = 0,count3200 = 0,count32000 = 0,count100000p = 0;
+	int sum32 = 0,sum320 = 0,sum3200 = 0,sum32000 = 0,sum100000p = 0;
+	for (auto &x : size_collector)
+	{
+		if (x <= 10)
+		{
+			count10 ++;
+			sum10 += x;
+		}else if (x <= 32)
+		{
+			count32 ++;
+			sum32 += x;
+		}else if (x <= 100)
+		{
+			count100 ++;
+			sum100 += x;
+		}else if (x <= 320)
+		{
+			count320 ++;
+			sum320 += x;
+		}else if (x <= 1000)
+		{
+			count1000 ++;
+			sum1000 += x;
+		}else if (x <= 3200)
+		{
+			count3200 ++;
+			sum3200 += x;
+		}else if (x <= 10000)
+		{
+			count10000 ++;
+			sum10000 += x;
+		}else if (x <= 32000)
+		{
+			count32000 ++;
+			sum32000 += x;
+		}else if (x <= 100000)
+		{
+			count100000 ++;
+			sum100000 += x;
+		}else
+		{
+			count100000p ++;
+			sum100000p ++;
+		}
+	}
 
 	cerr << "result outputing" << endl;
+
+	fstream_comm_stat
+		<<  "size\tcount\tsum" << endl 
+		<<  "1~10:" << count10 << ","<< sum10 << endl
+		<<  "~32:" << count32 << ","<< sum32 << endl
+		<<  "~100:" << count100 << ","<< sum100 << endl
+		<<  "~320:" << count320 << ","<< sum320 << endl
+		<<  "~1000:" << count1000 << ","<< sum1000 << endl
+		<<  "~3200:" << count3200 << ","<< sum3200 << endl
+		<<  "~10000:" << count10000 << ","<< sum10000 << endl
+		<<  "~32000:" << count32000 << ","<< sum32000 << endl
+		<<  "~100000:" << count100000 << ","<< sum100000 << endl
+		<<  "100000+:" << count100000p << ","<< sum100000p << endl << endl;
+		
+	for (auto &x : size_collector)
+	{
+		fstream_comm_stat << x << endl;
+	}
+
+
 /*
 	cerr << "hierarchy_comm_id dump:" << endl;
 	for (int i = 0; i <= node_num; ++i) {
