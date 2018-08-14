@@ -235,7 +235,7 @@ int main(int argc, char **argv) {
 		}else
 		{
 			count100000p ++;
-			sum100000p ++;
+			sum100000p += x;
 		}
 	}
 
@@ -253,7 +253,7 @@ int main(int argc, char **argv) {
 		<<  "~32000:" << count32000 << ","<< sum32000 << endl
 		<<  "~100000:" << count100000 << ","<< sum100000 << endl
 		<<  "100000+:" << count100000p << ","<< sum100000p << endl << endl;
-		
+
 	for (auto &x : size_collector)
 	{
 		fstream_comm_stat << x << endl;
