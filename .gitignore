@@ -2,3 +2,11 @@
 ~*
 *.o
 *.swp
+dataManufacturer/placement
+dataManufacturer/Louvain_ver_0.3/convert
+dataManufacturer/Louvain_ver_0.3/hierarchy
+dataManufacturer/Louvain_ver_0.3/louvain
+dataManufacturer/Louvain_ver_0.3/matrix
+dataManufacturer/metis-5.1.0/build/
+hstoreHome/gpmetis
+hstoreHome/plan*.json
