@@ -4,8 +4,7 @@ fab all build
 == Prepare
 write properties/benchmark/twitter.properties
 cp data/amazon/amazon0302_180000.plan.json ./plan.json
-fab once updateBenchCfg
-fab all prepare
+fab once updateBenchCfg && fab all prepare && fab once load
 
 #make & cp ./dataManufacture/metis-5.1.0/.../gpmetis into ./
 
