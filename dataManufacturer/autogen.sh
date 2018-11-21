@@ -22,7 +22,7 @@ if [ ! -n "$3" ]; then
 fi
 
 #comment while to do normal thing.
-while [ $n -le 1000000 ]; do
+#while [ $n -le 1000000 ]; do
 pattern=${inputfile%.txt}
 patternF=${pattern}_${n}
 Louvain_src="./Louvain_ver_0.3"
@@ -50,13 +50,13 @@ starttime=$(date +%s.%N)
 ./placement ${patternF}.tree -l ${limit} -m ${limit} -p ${patternF}.plan.json > ${patternF}.renum
 endtime=$(date +%s.%N)
 getTiming $starttime $endtime
-#./graph_renumber.py ${patternF}.txt -r ${patternF}.renum -o ${patternF}.txt.new
+./graph_renumber.py ${patternF}.txt -r ${patternF}.renum -o ${patternF}.txt.new
 # comment below to debug
 rm ${patternF}.tree ${patternF}.renum
 
 # comment while to do normal thing.
-let n+=10000
-done
+#let n+=10000
+#done
 
 echo All successful.
 

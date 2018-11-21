@@ -1,0 +1,525 @@
+Buildfile: /root/Commgraph/hstoreHome/build.xml
+
+hstore-benchmark:
+
+benchmark:
+     [java] 22:43:45,416 INFO  - [0;1m------------------------- BENCHMARK EXECUTE :: TWITTER -------------------------[0;0m
+     [java] 22:43:45,418 INFO  - Starting TWITTER execution with 24 blocking clients [hosts=12, perhost=2, txnrate=10000, concurrent=30]
+     [java] 22:45:06,005 INFO  - Initialized 24 TWITTER client threads in 80.59 sec
+     [java] 22:45:06,043 INFO  - Letting system warm-up for 10.0 seconds
+     [java] 22:45:16,043 INFO  - Starting benchmark stats collection
+     [java] Total dtxn1176 total7723
+     [java] 
+     [java] At time 1000 out of 60000 (1%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 7723 txns at a rate of 7723.00 txns/s with 88.54 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 75.00(ms) Latencies 95: 163.00(ms) Latencies 99: 253.22(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 7723 txns at a rate of 7723.00 txns/s with 88.54 ms avg latency
+     [java] Total dtxn2107 total14259
+     [java] 
+     [java] At time 2000 out of 60000 (3%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 6536 txns at a rate of 6536.00 txns/s with 84.43 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 66.00(ms) Latencies 95: 161.00(ms) Latencies 99: 287.36(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 14259 txns at a rate of 7129.50 txns/s with 86.66 ms avg latency
+     [java] Total dtxn3282 total22305
+     [java] 
+     [java] At time 3000 out of 60000 (5%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8046 txns at a rate of 8046.00 txns/s with 78.70 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 70.00(ms) Latencies 95: 143.00(ms) Latencies 99: 215.62(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 22305 txns at a rate of 7435.00 txns/s with 83.83 ms avg latency
+     [java] Total dtxn4462 total30058
+     [java] 
+     [java] At time 4000 out of 60000 (6%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 7753 txns at a rate of 7753.00 txns/s with 85.41 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 74.00(ms) Latencies 95: 160.00(ms) Latencies 99: 244.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 30058 txns at a rate of 7514.50 txns/s with 84.23 ms avg latency
+     [java] Total dtxn5759 total38624
+     [java] 
+     [java] At time 5000 out of 60000 (8%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8566 txns at a rate of 8566.00 txns/s with 79.08 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 67.00(ms) Latencies 95: 141.00(ms) Latencies 99: 216.40(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 38624 txns at a rate of 7724.80 txns/s with 83.09 ms avg latency
+     [java] Total dtxn6959 total46704
+     [java] 
+     [java] At time 6000 out of 60000 (10%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8080 txns at a rate of 8080.00 txns/s with 84.45 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 73.00(ms) Latencies 95: 152.00(ms) Latencies 99: 241.44(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 46704 txns at a rate of 7784.00 txns/s with 83.33 ms avg latency
+     [java] Total dtxn8291 total55451
+     [java] 
+     [java] At time 7000 out of 60000 (11%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8747 txns at a rate of 8747.00 txns/s with 77.18 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 66.00(ms) Latencies 95: 135.00(ms) Latencies 99: 258.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 55451 txns at a rate of 7921.57 txns/s with 82.36 ms avg latency
+     [java] Total dtxn9671 total64307
+     [java] 
+     [java] At time 8000 out of 60000 (13%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8856 txns at a rate of 8856.00 txns/s with 75.78 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 65.00(ms) Latencies 95: 139.00(ms) Latencies 99: 212.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 64307 txns at a rate of 8038.38 txns/s with 81.45 ms avg latency
+     [java] Total dtxn11102 total73950
+     [java] 
+     [java] At time 9000 out of 60000 (15%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9643 txns at a rate of 9643.00 txns/s with 71.17 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 62.00(ms) Latencies 95: 130.00(ms) Latencies 99: 210.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 73950 txns at a rate of 8216.67 txns/s with 80.11 ms avg latency
+     [java] Total dtxn12484 total83204
+     [java] 
+     [java] At time 10000 out of 60000 (16%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9254 txns at a rate of 9254.00 txns/s with 73.47 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 64.00(ms) Latencies 95: 131.00(ms) Latencies 99: 233.17(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 83204 txns at a rate of 8320.40 txns/s with 79.37 ms avg latency
+     [java] Total dtxn13936 total92617
+     [java] 
+     [java] At time 11000 out of 60000 (18%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9413 txns at a rate of 9413.00 txns/s with 72.32 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 62.00(ms) Latencies 95: 128.00(ms) Latencies 99: 232.88(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 92617 txns at a rate of 8419.73 txns/s with 78.66 ms avg latency
+     [java] Total dtxn15142 total100785
+     [java] 
+     [java] At time 12000 out of 60000 (20%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8168 txns at a rate of 8168.00 txns/s with 82.81 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 66.00(ms) Latencies 95: 163.60(ms) Latencies 99: 250.99(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 100785 txns at a rate of 8398.75 txns/s with 78.99 ms avg latency
+     [java] Total dtxn16568 total110208
+     [java] 
+     [java] At time 13000 out of 60000 (21%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9423 txns at a rate of 9423.00 txns/s with 73.10 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 62.00(ms) Latencies 95: 132.90(ms) Latencies 99: 240.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 110208 txns at a rate of 8477.54 txns/s with 78.49 ms avg latency
+     [java] Total dtxn18120 total120149
+     [java] 
+     [java] At time 14000 out of 60000 (23%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9941 txns at a rate of 9941.00 txns/s with 68.01 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 120.00(ms) Latencies 99: 185.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 120149 txns at a rate of 8582.07 txns/s with 77.62 ms avg latency
+     [java] Total dtxn19517 total129498
+     [java] 
+     [java] At time 15000 out of 60000 (25%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9349 txns at a rate of 9349.00 txns/s with 70.95 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 60.00(ms) Latencies 95: 130.00(ms) Latencies 99: 213.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 129498 txns at a rate of 8633.20 txns/s with 77.14 ms avg latency
+     [java] Total dtxn20976 total139490
+     [java] 
+     [java] At time 16000 out of 60000 (26%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9992 txns at a rate of 9992.00 txns/s with 68.72 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 59.00(ms) Latencies 95: 126.45(ms) Latencies 99: 197.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 139490 txns at a rate of 8718.13 txns/s with 76.54 ms avg latency
+     [java] Total dtxn22540 total150016
+     [java] 
+     [java] At time 17000 out of 60000 (28%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10526 txns at a rate of 10526.00 txns/s with 64.37 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 55.00(ms) Latencies 95: 114.00(ms) Latencies 99: 172.75(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 150016 txns at a rate of 8824.47 txns/s with 75.68 ms avg latency
+     [java] Total dtxn24056 total159827
+     [java] 
+     [java] At time 18000 out of 60000 (30%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9811 txns at a rate of 9811.00 txns/s with 69.26 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 60.00(ms) Latencies 95: 124.00(ms) Latencies 99: 187.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 159827 txns at a rate of 8879.28 txns/s with 75.29 ms avg latency
+     [java] Total dtxn25523 total169927
+     [java] 
+     [java] At time 19000 out of 60000 (31%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10100 txns at a rate of 10100.00 txns/s with 66.72 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 119.00(ms) Latencies 99: 185.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 169927 txns at a rate of 8943.53 txns/s with 74.78 ms avg latency
+     [java] Total dtxn27084 total180743
+     [java] 
+     [java] At time 20000 out of 60000 (33%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10816 txns at a rate of 10816.00 txns/s with 63.00 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 53.00(ms) Latencies 95: 110.00(ms) Latencies 99: 180.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 180743 txns at a rate of 9037.15 txns/s with 74.07 ms avg latency
+     [java] Total dtxn28608 total191073
+     [java] 
+     [java] At time 21000 out of 60000 (35%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10330 txns at a rate of 10330.00 txns/s with 65.48 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 121.00(ms) Latencies 99: 191.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 191073 txns at a rate of 9098.71 txns/s with 73.61 ms avg latency
+     [java] Total dtxn30123 total201175
+     [java] 
+     [java] At time 22000 out of 60000 (36%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10102 txns at a rate of 10102.00 txns/s with 66.41 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 118.00(ms) Latencies 99: 184.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 201175 txns at a rate of 9144.32 txns/s with 73.25 ms avg latency
+     [java] Total dtxn31626 total211255
+     [java] 
+     [java] At time 23000 out of 60000 (38%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10080 txns at a rate of 10080.00 txns/s with 68.04 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 128.00(ms) Latencies 99: 200.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 211255 txns at a rate of 9185.00 txns/s with 73.00 ms avg latency
+     [java] Total dtxn33120 total221543
+     [java] 
+     [java] At time 24000 out of 60000 (40%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10288 txns at a rate of 10288.00 txns/s with 65.80 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 55.00(ms) Latencies 95: 116.00(ms) Latencies 99: 197.65(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 221543 txns at a rate of 9230.96 txns/s with 72.66 ms avg latency
+     [java] Total dtxn34494 total231017
+     [java] 
+     [java] At time 25000 out of 60000 (41%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9474 txns at a rate of 9474.00 txns/s with 72.06 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 62.00(ms) Latencies 95: 136.00(ms) Latencies 99: 212.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 231017 txns at a rate of 9240.68 txns/s with 72.64 ms avg latency
+     [java] Total dtxn35987 total240860
+     [java] 
+     [java] At time 26000 out of 60000 (43%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9843 txns at a rate of 9843.00 txns/s with 68.20 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 126.00(ms) Latencies 99: 203.58(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 240860 txns at a rate of 9263.85 txns/s with 72.46 ms avg latency
+     [java] Total dtxn37534 total250948
+     [java] 
+     [java] At time 27000 out of 60000 (45%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10088 txns at a rate of 10088.00 txns/s with 67.30 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 119.00(ms) Latencies 99: 193.26(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 250948 txns at a rate of 9294.37 txns/s with 72.25 ms avg latency
+     [java] Total dtxn38983 total260500
+     [java] 
+     [java] At time 28000 out of 60000 (46%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9552 txns at a rate of 9552.00 txns/s with 71.03 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 142.00(ms) Latencies 99: 211.49(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 260500 txns at a rate of 9303.57 txns/s with 72.21 ms avg latency
+     [java] Total dtxn40340 total269555
+     [java] 
+     [java] At time 29000 out of 60000 (48%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9055 txns at a rate of 9055.00 txns/s with 75.52 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 59.00(ms) Latencies 95: 143.00(ms) Latencies 99: 221.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 269555 txns at a rate of 9295.00 txns/s with 72.32 ms avg latency
+     [java] Total dtxn41923 total280000
+     [java] 
+     [java] At time 30000 out of 60000 (50%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10445 txns at a rate of 10445.00 txns/s with 64.52 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 55.00(ms) Latencies 95: 115.00(ms) Latencies 99: 171.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 280000 txns at a rate of 9333.33 txns/s with 72.03 ms avg latency
+     [java] Total dtxn43463 total290186
+     [java] 
+     [java] At time 31000 out of 60000 (51%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10186 txns at a rate of 10186.00 txns/s with 66.87 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 118.00(ms) Latencies 99: 184.45(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 290186 txns at a rate of 9360.84 txns/s with 71.85 ms avg latency
+     [java] Total dtxn44988 total300291
+     [java] 
+     [java] At time 32000 out of 60000 (53%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10105 txns at a rate of 10105.00 txns/s with 66.49 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 55.00(ms) Latencies 95: 123.80(ms) Latencies 99: 186.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 300291 txns at a rate of 9384.09 txns/s with 71.67 ms avg latency
+     [java] Total dtxn46270 total308819
+     [java] 
+     [java] At time 33000 out of 60000 (55%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8528 txns at a rate of 8528.00 txns/s with 80.02 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 65.00(ms) Latencies 95: 152.00(ms) Latencies 99: 267.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 308819 txns at a rate of 9358.15 txns/s with 71.90 ms avg latency
+     [java] Total dtxn47825 total319408
+     [java] 
+     [java] At time 34000 out of 60000 (56%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10589 txns at a rate of 10589.00 txns/s with 64.01 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 55.00(ms) Latencies 95: 113.00(ms) Latencies 99: 187.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 319408 txns at a rate of 9394.35 txns/s with 71.63 ms avg latency
+     [java] Total dtxn49298 total329140
+     [java] 
+     [java] At time 35000 out of 60000 (58%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9732 txns at a rate of 9732.00 txns/s with 70.04 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 128.00(ms) Latencies 99: 214.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 329140 txns at a rate of 9404.00 txns/s with 71.59 ms avg latency
+     [java] Total dtxn50778 total339332
+     [java] 
+     [java] At time 36000 out of 60000 (60%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10192 txns at a rate of 10192.00 txns/s with 66.03 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 118.00(ms) Latencies 99: 181.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 339332 txns at a rate of 9425.89 txns/s with 71.42 ms avg latency
+     [java] Total dtxn52326 total349360
+     [java] 
+     [java] At time 37000 out of 60000 (61%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10028 txns at a rate of 10028.00 txns/s with 67.37 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 122.00(ms) Latencies 99: 182.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 349360 txns at a rate of 9442.16 txns/s with 71.30 ms avg latency
+     [java] Total dtxn53833 total359552
+     [java] 
+     [java] At time 38000 out of 60000 (63%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10192 txns at a rate of 10192.00 txns/s with 66.44 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 121.00(ms) Latencies 99: 201.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 359552 txns at a rate of 9461.89 txns/s with 71.17 ms avg latency
+     [java] Total dtxn55341 total370034
+     [java] 
+     [java] At time 39000 out of 60000 (65%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10482 txns at a rate of 10482.00 txns/s with 64.05 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 116.00(ms) Latencies 99: 173.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 370034 txns at a rate of 9488.05 txns/s with 70.97 ms avg latency
+     [java] Total dtxn56755 total379271
+     [java] 
+     [java] At time 40000 out of 60000 (66%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9237 txns at a rate of 9237.00 txns/s with 73.37 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 61.00(ms) Latencies 95: 140.00(ms) Latencies 99: 215.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 379271 txns at a rate of 9481.78 txns/s with 71.02 ms avg latency
+     [java] Total dtxn58276 total389408
+     [java] 
+     [java] At time 41000 out of 60000 (68%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10137 txns at a rate of 10137.00 txns/s with 67.62 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 129.00(ms) Latencies 99: 212.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 389408 txns at a rate of 9497.76 txns/s with 70.94 ms avg latency
+     [java] Total dtxn59729 total399336
+     [java] 
+     [java] At time 42000 out of 60000 (70%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9928 txns at a rate of 9928.00 txns/s with 68.51 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 133.00(ms) Latencies 99: 205.46(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 399336 txns at a rate of 9508.00 txns/s with 70.87 ms avg latency
+     [java] Total dtxn60915 total407459
+     [java] 
+     [java] At time 43000 out of 60000 (71%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 8123 txns at a rate of 8123.00 txns/s with 83.96 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 67.00(ms) Latencies 95: 178.00(ms) Latencies 99: 259.78(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 407459 txns at a rate of 9475.79 txns/s with 71.14 ms avg latency
+     [java] Total dtxn62333 total417130
+     [java] 
+     [java] At time 44000 out of 60000 (73%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9671 txns at a rate of 9671.00 txns/s with 69.52 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 62.00(ms) Latencies 95: 128.00(ms) Latencies 99: 204.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 417130 txns at a rate of 9480.23 txns/s with 71.10 ms avg latency
+     [java] Total dtxn63834 total427414
+     [java] 
+     [java] At time 45000 out of 60000 (75%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10284 txns at a rate of 10284.00 txns/s with 66.48 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 122.00(ms) Latencies 99: 203.17(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 427414 txns at a rate of 9498.09 txns/s with 70.99 ms avg latency
+     [java] Total dtxn65362 total437551
+     [java] 
+     [java] At time 46000 out of 60000 (76%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10137 txns at a rate of 10137.00 txns/s with 65.65 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 56.00(ms) Latencies 95: 116.00(ms) Latencies 99: 195.56(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 437551 txns at a rate of 9511.98 txns/s with 70.86 ms avg latency
+     [java] Total dtxn66863 total447578
+     [java] 
+     [java] At time 47000 out of 60000 (78%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10027 txns at a rate of 10027.00 txns/s with 68.69 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 130.00(ms) Latencies 99: 198.74(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 447578 txns at a rate of 9522.94 txns/s with 70.81 ms avg latency
+     [java] Total dtxn68454 total458269
+     [java] 
+     [java] At time 48000 out of 60000 (80%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10691 txns at a rate of 10691.00 txns/s with 63.70 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 53.00(ms) Latencies 95: 118.00(ms) Latencies 99: 181.10(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 458269 txns at a rate of 9547.27 txns/s with 70.65 ms avg latency
+     [java] Total dtxn69948 total468293
+     [java] 
+     [java] At time 49000 out of 60000 (81%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10024 txns at a rate of 10024.00 txns/s with 67.79 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 59.00(ms) Latencies 95: 124.85(ms) Latencies 99: 200.08(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 468293 txns at a rate of 9557.00 txns/s with 70.59 ms avg latency
+     [java] Total dtxn71430 total478332
+     [java] 
+     [java] At time 50000 out of 60000 (83%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10039 txns at a rate of 10039.00 txns/s with 66.39 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 121.00(ms) Latencies 99: 184.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 478332 txns at a rate of 9566.64 txns/s with 70.50 ms avg latency
+     [java] Total dtxn72930 total488130
+     [java] 
+     [java] At time 51000 out of 60000 (85%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9798 txns at a rate of 9798.00 txns/s with 69.86 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 58.00(ms) Latencies 95: 125.00(ms) Latencies 99: 195.03(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 488130 txns at a rate of 9571.18 txns/s with 70.49 ms avg latency
+     [java] Total dtxn74341 total497792
+     [java] 
+     [java] At time 52000 out of 60000 (86%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9662 txns at a rate of 9662.00 txns/s with 69.70 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 59.00(ms) Latencies 95: 127.00(ms) Latencies 99: 197.56(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 497792 txns at a rate of 9572.92 txns/s with 70.47 ms avg latency
+     [java] Total dtxn75688 total507017
+     [java] 
+     [java] At time 53000 out of 60000 (88%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9225 txns at a rate of 9225.00 txns/s with 73.91 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 60.00(ms) Latencies 95: 151.00(ms) Latencies 99: 218.76(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 507017 txns at a rate of 9566.36 txns/s with 70.53 ms avg latency
+     [java] Total dtxn77220 total517022
+     [java] 
+     [java] At time 54000 out of 60000 (90%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 10005 txns at a rate of 10005.00 txns/s with 67.96 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 57.00(ms) Latencies 95: 127.00(ms) Latencies 99: 199.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 517022 txns at a rate of 9574.48 txns/s with 70.48 ms avg latency
+     [java] Total dtxn78690 total526423
+     [java] 
+     [java] At time 55000 out of 60000 (91%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9401 txns at a rate of 9401.00 txns/s with 71.03 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 62.00(ms) Latencies 95: 130.00(ms) Latencies 99: 200.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 526423 txns at a rate of 9571.33 txns/s with 70.49 ms avg latency
+     [java] Total dtxn80149 total536177
+     [java] 
+     [java] At time 56000 out of 60000 (93%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9754 txns at a rate of 9754.00 txns/s with 70.64 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 59.00(ms) Latencies 95: 131.00(ms) Latencies 99: 220.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 536177 txns at a rate of 9574.59 txns/s with 70.50 ms avg latency
+     [java] Total dtxn81597 total545538
+     [java] 
+     [java] At time 57000 out of 60000 (95%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9361 txns at a rate of 9361.00 txns/s with 72.52 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 60.00(ms) Latencies 95: 134.00(ms) Latencies 99: 224.20(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 545538 txns at a rate of 9570.84 txns/s with 70.53 ms avg latency
+     [java] Total dtxn83057 total555075
+     [java] 
+     [java] At time 58000 out of 60000 (96%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9537 txns at a rate of 9537.00 txns/s with 70.77 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 61.00(ms) Latencies 95: 128.00(ms) Latencies 99: 213.00(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 555075 txns at a rate of 9570.26 txns/s with 70.54 ms avg latency
+     [java] Total dtxn84478 total564860
+     [java] 
+     [java] At time 59000 out of 60000 (98%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9785 txns at a rate of 9785.00 txns/s with 68.99 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 59.00(ms) Latencies 95: 127.00(ms) Latencies 99: 227.32(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 564860 txns at a rate of 9573.90 txns/s with 70.51 ms avg latency
+     [java] Total dtxn85875 total574101
+     [java] 
+     [java] At time 60000 out of 60000 (100%):
+     [java]   In the past 1000 ms:
+     [java]     Completed 9241 txns at a rate of 9241.00 txns/s with 73.94 ms avg latency. Percent Distributed:0.15
+     [java]    Percentile Latencies 50: 61.00(ms) Latencies 95: 131.00(ms) Latencies 99: 235.60(ms)
+     [java]   Since the benchmark began:
+     [java]     Completed 574101 txns at a rate of 9568.35 txns/s with 70.56 ms avg latency
+     [java] 22:46:16,113 INFO  - Waiting for 12 clients to finish
+     [java] 22:46:35,507 INFO  - Computing final benchmark results...
+     [java] 22:46:35,526 INFO  - Wrote CSV results to '/root/Commgraph/hstoreHome/results.csv'
+     [java] 
+     [java] ======================================== BENCHMARK RESULTS ========================================
+     [java] Execution Time: 60000 ms
+     [java] Transactions:   Total:574101 / Distributed:85875 (15.0%) / SpecExec:0 (0.0%)
+     [java] Throughput:     9568.35 txn/s [min:6536.00 / max:10816.00 / stdev:839.81]
+     [java] Latency:        70.56 ms [min:33.00 / max:487.00 / stdev:33.33]
+     [java] 
+     [java] ----------------------------------------------------------------------------------------------------
+     [java]                             TOTAL EXECUTED     DISTRIBUTED        THROUGHPUT      AVG LATENCY
+     [java]        Get User Tweets:       458993 ( 79.9%)         0 (  0.0%)   7649.88 txn/s     59.39 ms
+     [java]          Get Followers:        26394 (  4.6%)     25583 ( 96.9%)    439.90 txn/s    132.35 ms
+     [java]           Insert Tweet:        28420 (  5.0%)         0 (  0.0%)    473.67 txn/s     59.43 ms
+     [java]              Get Tweet:            0 (  0.0%)         0 (  0.0%)      0.00 txn/s         - ms
+     [java] Get Tweets From Following:     60294 ( 10.5%)     60292 (100.0%)   1004.90 txn/s    133.84 ms
+     [java] ====================================================================================================
+     [java] Transaction Base Partitions:
+     [java]    Partition 00         [79873 - 13.9%] *******************************************
+     [java]    Partition 01         [92772 - 16.2%] **************************************************
+     [java]    Partition 02         [79942 - 13.9%] *******************************************
+     [java]    Partition 03         [72226 - 12.6%] **************************************
+     [java]    Partition 04         [68455 - 11.9%] ************************************
+     [java]    Partition 05         [64012 - 11.1%] **********************************
+     [java]    Partition 06         [56742 -  9.9%] ******************************
+     [java]    Partition 07         [60079 - 10.5%] ********************************
+     [java] ====================================================================================================
+     [java] Client Response Statuses:
+     [java]    OK                   [574101 - 100.0%] **************************************************
+     [java] ====================================================================================================
+     [java] 
+
+BUILD SUCCESSFUL
+Total time: 2 minutes 53 seconds
