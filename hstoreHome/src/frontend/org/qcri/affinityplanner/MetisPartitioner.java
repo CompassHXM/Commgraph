@@ -50,14 +50,14 @@ public class MetisPartitioner extends GraphGreedy {
 
             Process metisProc = null;
             if (Controller.IMBALANCE_LOAD == 0){
-                metisProc = new ProcessBuilder("./gpmetis", "-ptype=rb", Controller.METIS_OUT, ""+ m_partitionsNo).start();
-                System.out.println("Calling gpmetis -ptype=rb " + Controller.METIS_OUT + " "+ m_partitionsNo);
+                metisProc = new ProcessBuilder("./gpmetis", "-ptype=kway", Controller.METIS_OUT, ""+ m_partitionsNo).start();
+                System.out.println("Calling gpmetis -ptype=kway " + Controller.METIS_OUT + " "+ m_partitionsNo);
             }
             else{
 //                double imbalance = (1 + Controller.IMBALANCE_LOAD) * 1000 - 1;
                 double imbalance = Controller.IMBALANCE_LOAD * 1000;
-                metisProc = new ProcessBuilder("./gpmetis", "-ptype=rb", "-ufactor=" + imbalance, Controller.METIS_OUT, ""+ m_partitionsNo).start();                
-                System.out.println("Calling gpmetis -ptype=rb -ufactor=" + imbalance + " " + Controller.METIS_OUT + " " + m_partitionsNo);
+                metisProc = new ProcessBuilder("./gpmetis", "-ptype=kway", "-ufactor=" + imbalance, Controller.METIS_OUT, ""+ m_partitionsNo).start();                
+                System.out.println("Calling gpmetis -ptype=kway -ufactor=" + imbalance + " " + Controller.METIS_OUT + " " + m_partitionsNo);
             }
 
             // LOG.info("metis proc: " + metisProc.toString());
