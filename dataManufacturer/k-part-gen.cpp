@@ -50,37 +50,72 @@ class edge {
     }
 };
 
-std::vector<edge> gen_edges(int n, int p) {
-    std::vector<int> distribution = normal_distribution_seq((n+p-1)/p);
+// [st,ed)
+std::vector<edge> gen_part_edges(
+    const std::vector<int>& distribution, 
+    int st, 
+    int ed, 
+    std::vector<edge>& res) 
+{
     std::vector<int> half_edge;
-    for (int i = 0; i < p - 1; ++i) {
-        int st = n/p*i;
-        for (int j = 1; j <= n/p; ++j) {
-            // insert distribution[j-1] numbers, which all are "st+j". 
-            half_edge.insert(half_edge.end(), distribution[j-1], st+j);
-        }
-    }
-
-    for (int st = n/p*(p-1)+1; st <= n; ++st) {
-        half_edge.insert(half_edge.end(), distribution[st - n/p*(p-1)-1], st);
+    for (int j = 1; j <= ed-st; ++j) {
+        // insert distribution[j-1] numbers, which all are "st+j". 
+        half_edge.insert(half_edge.end(), distribution[j-1], st+j);
     }
     random_shuffle(half_edge.begin(), half_edge.end());
 
-    std::vector<edge> res;
+    std::vector<edge> part;
     for (int i = 0; i+1 < half_edge.size(); i+=2) {
-        res.push_back(edge(half_edge[i], half_edge[i+1]));
-        res.push_back(edge(half_edge[i+1], half_edge[i]));
+        part.push_back(edge(half_edge[i], half_edge[i+1]));
+        part.push_back(edge(half_edge[i+1], half_edge[i]));
     }
-    sort(res.begin(), res.end(), edge());
-    res.erase(unique(res.begin(), res.end()), res.end());
+    for (int i = st+1; i < ed; ++i) {
+        part.push_back(edge(i,i+1));
+        part.push_back(edge(i+1,i));
+    }
+    sort(part.begin(), part.end(), edge());
+    part.erase(unique(part.begin(), part.end()), part.end());
+
+    res.insert(res.end(), part.begin(), part.end());
+    return part;
+}
+
+std::vector<edge> gen_edges(int n, int p) {
+    std::vector<int> distribution = normal_distribution_seq((n+p-1)/p);
+    std::vector<edge> res;
+    for (int i = 0; i < p - 1; ++i) {
+        gen_part_edges(distribution, n/p*i, n/p*(i+1), res);
+    }
+    gen_part_edges(distribution, n/p*(p-1), n, res);
+
     return res;
 }
+
 void out1(const std::vector<edge> &edges, std::string filename) {
     std::ofstream ofs(filename);
     for(auto e : edges) {
         ofs << e.u << " " << e.v << std::endl;
     }
 }
+
+void out2(const std::vector<edge> &edges, std::string filename, int n) {
+    std::ofstream ofs(filename);
+    ofs << n << " " << edges.size()/2;
+
+    int last = 0;
+    for(auto e : edges) {
+        while (last < e.u) {
+            ofs << std::endl;
+            last ++;
+        }
+        ofs << e.v << " ";
+    }
+    while (last <= n) {
+        ofs << std::endl;
+        last ++;
+    }
+}
+
 int main(int argc, char **argv) {
     std::ios::sync_with_stdio(false);
     int n = 0;
@@ -93,6 +128,7 @@ int main(int argc, char **argv) {
     }
     std::vector<edge> edges = gen_edges(n,p);
     out1(edges, "data.txt");
-    //out2(edges, "metisdata.txt");
+    out2(edges, "metisdata.txt", n);
     return 0;
 }
+
