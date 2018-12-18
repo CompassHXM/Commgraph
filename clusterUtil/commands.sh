@@ -52,3 +52,20 @@ Load & run baseline again
 fab all runCmd:command="ant clean"
 
 ### remember that $max_user_id in properties file need strictly less than max_id in json file!!!!
+
+== k-partition tests:
+./k-part-gen 100000 4
+# get metisdata.txt(in format of metis) data.txt(in format of louvain)
+# newdata.txt(which is originlly partitioned)
+./autogen.sh data.txt 100000 25500
+
+for each num of partition:
+../hstoreHome/gpmetis -ptype=kway -ufactor=500 metisdata.txt 5
+# get metisdata.txt.part.5
+./genplan_from_partitionfile metisdata.txt.part.5
+mv plan.json ../hstoreHome/
+# get plan.json
+
+using plan_gen_hand , data.txt => baseline bench
+using metis.plan , data.txt => metis bench
+using commgraph.plan , data.txt.new => commgraph bench
