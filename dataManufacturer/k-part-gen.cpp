@@ -14,7 +14,7 @@ bool parse_args(char **argv, int &n, int &p) {
         if (p <= 0 || n <= 0 || n<p)
             return false;
     }
-    catch (const std::invalid_argument& ia) {
+    catch (...) {
         return false;
     }
     return true;
@@ -45,6 +45,9 @@ class edge {
     bool operator() (const edge& a, const edge& b) const {
         return (a.u<b.u) || (a.u==b.u && a.v<=b.v);
     }
+    bool operator == (const edge& other) const {
+        return other.u == u && other.v == v;
+    }
 };
 
 std::vector<edge> gen_edges(int n, int p) {
@@ -52,22 +55,24 @@ std::vector<edge> gen_edges(int n, int p) {
     std::vector<int> half_edge;
     for (int i = 0; i < p - 1; ++i) {
         int st = n/p*i;
-        for (int j = 0; j < n/p; ++j) {
-            // insert distribution[j] numbers, which all are "st+j". 
-            half_edge.insert(half_edge.end(), distribution[j], st+j);
+        for (int j = 1; j <= n/p; ++j) {
+            // insert distribution[j-1] numbers, which all are "st+j". 
+            half_edge.insert(half_edge.end(), distribution[j-1], st+j);
         }
     }
 
-    for (int st = n/p*(p-1); st < n; ++st) {
-        half_edge.insert(half_edge.end(), distribution[st - n/p*(p-1)], st);
+    for (int st = n/p*(p-1)+1; st <= n; ++st) {
+        half_edge.insert(half_edge.end(), distribution[st - n/p*(p-1)-1], st);
     }
     random_shuffle(half_edge.begin(), half_edge.end());
 
     std::vector<edge> res;
     for (int i = 0; i+1 < half_edge.size(); i+=2) {
         res.push_back(edge(half_edge[i], half_edge[i+1]));
+        res.push_back(edge(half_edge[i+1], half_edge[i]));
     }
     sort(res.begin(), res.end(), edge());
+    res.erase(unique(res.begin(), res.end()), res.end());
     return res;
 }
 void out1(const std::vector<edge> &edges, std::string filename) {
