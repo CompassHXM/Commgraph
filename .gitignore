@@ -2,11 +2,16 @@
 ~*
 *.o
 *.swp
+*.txt
+*.txt.new
+*.bin
+*.renum
 dataManufacturer/placement
 dataManufacturer/Louvain_ver_0.3/convert
 dataManufacturer/Louvain_ver_0.3/hierarchy
 dataManufacturer/Louvain_ver_0.3/louvain
 dataManufacturer/Louvain_ver_0.3/matrix
 dataManufacturer/metis-5.1.0/build/
+dataManufacturer/data.*
 hstoreHome/gpmetis
 hstoreHome/plan*.json

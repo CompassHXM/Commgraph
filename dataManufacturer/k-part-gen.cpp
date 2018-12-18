@@ -66,6 +66,8 @@ std::vector<edge> gen_part_edges(
 
     std::vector<edge> part;
     for (int i = 0; i+1 < half_edge.size(); i+=2) {
+        if (half_edge[i] == half_edge[i+1])
+            continue;
         part.push_back(edge(half_edge[i], half_edge[i+1]));
         part.push_back(edge(half_edge[i+1], half_edge[i]));
     }
@@ -89,6 +91,18 @@ std::vector<edge> gen_edges(int n, int p) {
     gen_part_edges(distribution, n/p*(p-1), n, res);
 
     return res;
+}
+void renum(std::vector<edge> &edges, int n) {
+    std::vector<int> v(n+1, 0);
+    for (int i = 0; i <= n; ++i) {
+        v[i] = i;
+    }
+    random_shuffle(v.begin() + 1, v.end());
+    for (auto &e : edges) {
+        e.u = v[e.u];
+        e.v = v[e.v];
+    }
+    sort(edges.begin(), edges.end(), edge());
 }
 
 void out1(const std::vector<edge> &edges, std::string filename) {
@@ -127,6 +141,8 @@ int main(int argc, char **argv) {
         return -1;
     }
     std::vector<edge> edges = gen_edges(n,p);
+    out1(edges, "newdata.txt");
+    renum(edges, n);
     out1(edges, "data.txt");
     out2(edges, "metisdata.txt", n);
     return 0;

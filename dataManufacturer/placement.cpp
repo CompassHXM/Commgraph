@@ -371,6 +371,7 @@ void dfs_set_plan(int h, int comm_id, const vector<CommunityMap> &hierarchy_comm
 }
 
 bool parseargs(int argc, char **argv, char *&fname_comm, char *&fname_weight, char *&fname_plan) {
+
 	for (int i = 1; i < argc; ++i)
 	{
 		if (argv[i][0] == '-' && i+1 < argc) {
@@ -379,10 +380,20 @@ bool parseargs(int argc, char **argv, char *&fname_comm, char *&fname_weight, ch
 					fname_weight = argv[i+1];
 					break;
 				case 'l': case 'L':
-					LoadLimit = stoi(string(argv[i+1]));
+					try{
+						LoadLimit = stoi(string(argv[i+1]));
+					}catch (...){
+						cerr << "LoadLimit is not a number" << endl;
+						return false;
+					}
 					break;
 				case 'm': case 'M':
-					MemLimit = stoi(string(argv[i+1]));
+					try{
+						MemLimit = stoi(string(argv[i+1]));
+					}catch (...){
+						cerr << "MemLimit is not a number" << endl;
+						return false;
+					}
 					break;
 				case 'p': case 'P':
 					fname_plan = argv[i+1];
@@ -424,4 +435,5 @@ void output_formatted_partitions(ofstream& fstream_plan,
 		fstream_plan << endl;
 	}
 }
+
 
