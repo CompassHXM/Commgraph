@@ -1,0 +1,45 @@
+Buildfile: /root/Commgraph/hstoreHome/build.xml
+
+affinity:
+     [java] args:: catalog.jar:                  /root/Commgraph/hstoreHome/twitter.jar
+     [java] elastic.imbalance_load:       0.1
+     [java] elastic.max_partitions_added: 6
+     [java] elastic.run_monitoring:       false
+     [java] elastic.update_plan:          true
+     [java] elastic.exec_reconf:          false
+     [java] elastic.algo:                 metis
+     [java] catalog:                      /root/Commgraph/hstoreHome/twitter.jar
+     [java] catalog.type:                 TWITTER
+     [java] mappings:                     /tmp/hstore3474276728789825411.mappings
+     [java] 
+     [java] vargs.length: 245
+     [java] ======================== LOADING GRAPH ========================
+     [java] Algorithm metis
+     [java] Error while reading interval file ./interval-partition-0.log
+     [java]  Stack trace:
+     [java] java.nio.file.NoSuchFileException: ./interval-partition-0.log
+     [java] 	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:86)
+     [java] 	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102)
+     [java] 	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107)
+     [java] 	at sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:214)
+     [java] 	at java.nio.file.Files.newByteChannel(Files.java:317)
+     [java] 	at java.nio.file.Files.newByteChannel(Files.java:363)
+     [java] 	at java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:380)
+     [java] 	at java.nio.file.Files.newInputStream(Files.java:108)
+     [java] 	at java.nio.file.Files.newBufferedReader(Files.java:2677)
+     [java] 	at org.qcri.affinityplanner.AffinityGraph.<init>(AffinityGraph.java:287)
+     [java] 	at org.qcri.affinityplanner.GraphGreedy.<init>(GraphGreedy.java:20)
+     [java] 	at org.qcri.affinityplanner.MetisPartitioner.<init>(MetisPartitioner.java:26)
+     [java] 	at org.qcri.affinityplanner.Controller.run(Controller.java:240)
+     [java] 	at org.qcri.affinityplanner.Controller.main(Controller.java:396)
+     [java] 
+     [java] java.lang.NullPointerException
+     [java] 	at org.qcri.affinityplanner.PartitionerAffinity.graphToFile(PartitionerAffinity.java:519)
+     [java] 	at org.qcri.affinityplanner.Controller.run(Controller.java:251)
+     [java] 	at org.qcri.affinityplanner.Controller.main(Controller.java:396)
+     [java] Problem while loading graph. Exiting
+     [java] Time taken:7175
+     [java] Not good
+
+BUILD SUCCESSFUL
+Total time: 9 seconds

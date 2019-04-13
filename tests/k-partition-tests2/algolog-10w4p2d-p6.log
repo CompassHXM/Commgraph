@@ -1,0 +1,62 @@
+Buildfile: /root/Commgraph/hstoreHome/build.xml
+
+affinity:
+     [java] args:: catalog.jar:                  /root/Commgraph/hstoreHome/twitter.jar
+     [java] elastic.imbalance_load:       0.01
+     [java] elastic.max_partitions_added: 6
+     [java] elastic.run_monitoring:       false
+     [java] elastic.update_plan:          true
+     [java] elastic.exec_reconf:          false
+     [java] elastic.algo:                 metis
+     [java] catalog:                      /root/Commgraph/hstoreHome/twitter.jar
+     [java] catalog.type:                 TWITTER
+     [java] mappings:                     /tmp/hstore4873400087256265151.mappings
+     [java] 
+     [java] vargs.length: 245
+     [java] ======================== LOADING GRAPH ========================
+     [java] Algorithm metis
+     [java] Using 1 threads
+     [java] Loading from file ./transactions-partition-0.log
+     [java] Loading from file ./transactions-partition-1.log
+     [java] Loading from file ./transactions-partition-2.log
+     [java] Loading from file ./transactions-partition-3.log
+     [java] Loading from file ./transactions-partition-4.log
+     [java] Loading from file ./transactions-partition-5.log
+     [java] Time taken:11763
+     [java] Writing graph.
+     [java] Number of vertices: 254436
+     [java] Number of edges: 404879
+     [java] ======================== PARTITIONING GRAPH ========================
+     [java] Load per partition before reconfiguration
+     [java] 0: 197111.80714303933
+     [java] 1: 197461.13571446182
+     [java] 2: 194786.05714303936
+     [java] 3: 196992.3428573237
+     [java] 4: 196020.68571445873
+     [java] 5: 196731.8000001829
+     [java] Max load: 198482.47780970513
+     [java] Min load: 194552.13171446347
+     [java] Writing metis graph out to ./metis.txt 
+     [java] generating metis out file took : 2157
+     [java] Calling gpmetis -ptype=kway -ufactor=10.0 metis.txt 6
+     [java] Metis ran successfully. took : 295
+     [java] Getting metis out and mapping to hashes for ./metis.txt.part.6 and ./metismap.txt
+     [java] Results in metis map files: 254436
+     [java] Time taken:4061
+     [java] Planner writing to plan_out.json
+     [java] Load per partition after reconfiguration
+     [java] 0 4495.728571427327
+     [java] 1 4495.928571427343
+     [java] 2 4495.85714285586
+     [java] 3 4495.907142855899
+     [java] 4 4495.992857141598
+     [java] 5 4495.842857141574
+     [java] Verifying output plan
+     [java] Printing movements
+     [java] Data movements counts: 
+     [java] Table follows: 73590
+     [java] Table user_profiles: 83237
+     [java] Table followers: 54914
+
+BUILD SUCCESSFUL
+Total time: 44 seconds

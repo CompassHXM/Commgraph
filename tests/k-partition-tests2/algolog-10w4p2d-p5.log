@@ -1,0 +1,59 @@
+Buildfile: /root/Commgraph/hstoreHome/build.xml
+
+affinity:
+     [java] args:: catalog.jar:                  /root/Commgraph/hstoreHome/twitter.jar
+     [java] elastic.imbalance_load:       0.01
+     [java] elastic.max_partitions_added: 6
+     [java] elastic.run_monitoring:       false
+     [java] elastic.update_plan:          true
+     [java] elastic.exec_reconf:          false
+     [java] elastic.algo:                 metis
+     [java] catalog:                      /root/Commgraph/hstoreHome/twitter.jar
+     [java] catalog.type:                 TWITTER
+     [java] mappings:                     /tmp/hstore5096599913838405751.mappings
+     [java] 
+     [java] vargs.length: 245
+     [java] ======================== LOADING GRAPH ========================
+     [java] Algorithm metis
+     [java] Using 1 threads
+     [java] Loading from file ./transactions-partition-0.log
+     [java] Loading from file ./transactions-partition-1.log
+     [java] Loading from file ./transactions-partition-2.log
+     [java] Loading from file ./transactions-partition-3.log
+     [java] Loading from file ./transactions-partition-4.log
+     [java] Time taken:11451
+     [java] Writing graph.
+     [java] Number of vertices: 251067
+     [java] Number of edges: 397672
+     [java] ======================== PARTITIONING GRAPH ========================
+     [java] Load per partition before reconfiguration
+     [java] 0: 217768.97142881158
+     [java] 1: 217234.5071431032
+     [java] 2: 217721.92142882108
+     [java] 3: 216853.61428596164
+     [java] 4: 216740.06428595705
+     [java] Max load: 219436.45387167626
+     [java] Min load: 215091.1775573856
+     [java] Writing metis graph out to ./metis.txt 
+     [java] generating metis out file took : 2272
+     [java] Calling gpmetis -ptype=kway -ufactor=10.0 metis.txt 5
+     [java] Metis ran successfully. took : 321
+     [java] Getting metis out and mapping to hashes for ./metis.txt.part.5 and ./metismap.txt
+     [java] Results in metis map files: 251067
+     [java] Time taken:4210
+     [java] Planner writing to plan_out.json
+     [java] Load per partition after reconfiguration
+     [java] 0 5155.228571426616
+     [java] 1 5155.164285712294
+     [java] 2 5155.2357142837855
+     [java] 3 5155.214285712417
+     [java] 4 5155.378571426634
+     [java] Verifying output plan
+     [java] Printing movements
+     [java] Data movements counts: 
+     [java] Table follows: 70112
+     [java] Table user_profiles: 79858
+     [java] Table followers: 50570
+
+BUILD SUCCESSFUL
+Total time: 45 seconds

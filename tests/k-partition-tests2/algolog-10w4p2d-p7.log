@@ -1,0 +1,22 @@
+Buildfile: /root/Commgraph/hstoreHome/build.xml
+
+affinity:
+     [java] args:: catalog.jar:                  /root/Commgraph/hstoreHome/twitter.jar
+     [java] elastic.imbalance_load:       0.01
+     [java] elastic.max_partitions_added: 6
+     [java] elastic.run_monitoring:       false
+     [java] elastic.update_plan:          true
+     [java] elastic.exec_reconf:          false
+     [java] elastic.algo:                 metis
+     [java] catalog:                      /root/Commgraph/hstoreHome/twitter.jar
+     [java] catalog.type:                 TWITTER
+     [java] mappings:                     /tmp/hstore673576504169464637.mappings
+     [java] 
+     [java] vargs.length: 245
+     [java] ======================== LOADING GRAPH ========================
+     [java] Algorithm metis
+     [java] Using 1 threads
+     [java] Loading from file ./transactions-partition-0.log
+     [java] Loading from file ./transactions-partition-1.log
+     [java] Loading from file ./transactions-partition-2.log
+     [java] Loading from file ./transactions-partition-3.log
