@@ -36,7 +36,7 @@ Load & Run baseline again
 
 == Gen Metis with imbalance_load: Plan_out.json
 
-ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.imbalance_load=0.5 -Delastic.algo=metis -Delastic.max_partitions_added=6 -Dclient.memory=4096
+ant affinity -Dproject=twitter -Dglobal.hasher_plan=plan.json -Dglobal.hasher_class=edu.brown.hashing.TwoTieredRangeHasher -Delastic.run_monitoring=false -Delastic.update_plan=true -Delastic.exec_reconf=false -Delastic.algo=metis -Delastic.max_partitions_added=6 -Dclient.memory=4096 -Delastic.imbalance_load=0.01 | tee ../tests/k-partition-tests2/algolog-10w4p2d-p8.log
 
 == Run Metis:
 swap plan.json and plan_out.json
